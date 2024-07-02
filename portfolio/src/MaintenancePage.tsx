@@ -50,10 +50,6 @@ const MaintenancePage: React.FC = () => {
     return () => window.removeEventListener('resize', updateTextContent);
   }, []);
 
-  const toggleDialog = (open: boolean) => {
-    setIsDialogOpen(open);
-  };
-
   const handleMouseEnter = () => {
     clearTimeout(timeoutId);
     setIsDialogOpen(true);
