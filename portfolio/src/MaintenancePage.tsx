@@ -90,7 +90,7 @@ const MaintenancePage: React.FC = () => {
         </div>
       </div>
       <div className="image">
-        <img src={`src/images/${number}.jpg`} alt={`random image lol ${number}`} />
+        <img src={`images/${number}.jpg`} alt={`random image lol ${number}`} />
       </div>
     </div>
   );
