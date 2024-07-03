@@ -8,7 +8,7 @@ const MaintenancePage: React.FC = () => {
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    const timer = window.setTimeout(() => {
       setIsFirstVisit(false);
     }, 1000);
     return () => clearTimeout(timer);
@@ -25,6 +25,7 @@ const MaintenancePage: React.FC = () => {
       document.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
+
   const [orient, setText] = useState<string>('right');
 
   const updateTextContent = () => {
@@ -39,32 +40,30 @@ const MaintenancePage: React.FC = () => {
   useEffect(() => {
     const randomNum = Math.floor(Math.random() * 50) + 1;
     setNumber(randomNum);
-  }, []); 
+  }, []);
 
   useEffect(() => {
-
     updateTextContent();
-
     window.addEventListener('resize', updateTextContent);
 
     return () => window.removeEventListener('resize', updateTextContent);
   }, []);
 
   const handleMouseEnter = () => {
-    clearTimeout(timeoutId);
+    if (timeoutId !== undefined) {
+      clearTimeout(timeoutId);
+    }
     setIsDialogOpen(true);
   };
 
   const handleMouseLeave = () => {
-    const id = setTimeout(() => {
+    const id = window.setTimeout(() => {
       setIsDialogOpen(false);
     }, 500); // Adjust the delay as needed
     setTimeoutId(id);
   };
 
-  
-
-  const textTitle = "Hello and Welcome to my Website, Unfortunetely there is nothing to see in here for now.. (ᴗ_ ᴗ。)";
+  const textTitle = "Hello and Welcome to my Website, Unfortunately there is nothing to see in here for now.. (ᴗ_ ᴗ。)";
 
   return (
     <div className="maintenance-container">
@@ -74,7 +73,7 @@ const MaintenancePage: React.FC = () => {
           <p>
             {textTitle}
           </p>
-          <p>Anyways enjoy these random 50 images {orient} of your screen everytime you refresh this page ⸜(｡˃ ᵕ ˂ )⸝♡ </p>
+          <p>Anyways enjoy these random 50 images {orient} of your screen every time you refresh this page ⸜(｡˃ ᵕ ˂ )⸝♡ </p>
           <p>&mdash; burgerfox1</p>
         </div>
         <button
@@ -90,7 +89,7 @@ const MaintenancePage: React.FC = () => {
         </div>
       </div>
       <div className="image">
-        <img src={`images/${number}.jpg`} alt={`random image lol ${number}`} />
+        <img src={`images/${number}.jpg`} alt={`random image ${number}`} />
       </div>
     </div>
   );
