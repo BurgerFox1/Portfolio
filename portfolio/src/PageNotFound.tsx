@@ -1,4 +1,5 @@
 import React from 'react';
+import { CSSProperties } from 'react';
 
 const NotFound: React.FC = () => {
   return (
@@ -9,7 +10,7 @@ const NotFound: React.FC = () => {
   );
 };
 
-const styles = {
+const styles: { [key: string]: CSSProperties } = {
   container: {
     display: 'flex',
     flexDirection: 'column',
